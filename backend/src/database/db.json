@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "e0d0860b-12bf-46ad-a59f-6d21bcb1ba0e",
+      "firstName": "leticia",
+      "lastName": "Lopes",
+      "username": "leticia.lopes",
+      "profile": "office suport",
+      "status": "active"
+    },
+    {
+      "id": "15e5f458-56e3-4a52-92b0-c6216ded3e45",
+      "firstName": "maycon",
+      "lastName": "cruz",
+      "username": "maycon.cruz",
+      "profile": "business contact",
+      "status": "active"
+    },
+    {
+      "id": "079f4fb0-8d92-4b8a-b20f-558f74caf102",
+      "firstName": "tiago",
+      "lastName": "tapparo",
+      "username": "tiago.taparo",
+      "profile": "driver",
+      "status": "inactive"
+    }
+  ]
+}
