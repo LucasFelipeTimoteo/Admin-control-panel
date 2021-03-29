@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function AddUserForm({
+export default function UserRegistry({
   username,
   handleUsername,
 
@@ -28,10 +28,11 @@ export default function AddUserForm({
 
   expire,
   shouldExpire,
-
   shouldNotExpire,
+
   expireDate,
   handleExpireDate,
+  resetExpireDate,
 
   userActivity,
   handleUserActivity,
@@ -39,10 +40,9 @@ export default function AddUserForm({
   step,
   nextStep
 }) {
-  if(step !==1) {
+  if (step !== 1) {
     return null
   }
-
   return (
     <>
       <label htmlFor="username">Username</label>
@@ -83,7 +83,8 @@ export default function AddUserForm({
       />
 
       <label htmlFor="phone">Phone</label>
-      <input type="tel"
+      <input
+        type="tel"
         name="phone"
         id="phone"
         value={phone}
@@ -92,7 +93,8 @@ export default function AddUserForm({
       />
 
       <label htmlFor="mobile-phone">Mobile Phone</label>
-      <input type="tel"
+      <input
+        type="tel"
         name="mobile-phone"
         id="mobile-phone"
         value={mobilePhone}
@@ -133,19 +135,25 @@ export default function AddUserForm({
           id="not-expires"
           checked={!expire}
           onChange={shouldNotExpire}
+          onClick={resetExpireDate}
         />
         <label htmlFor="not-expires">Never</label>
       </div>
 
-      <label htmlFor="expire-date">Expire Date</label>
-      <input
-        type="date"
-        name="expire-date"
-        id="expire-date"
-        value={expireDate}
-        onChange={handleExpireDate}
-        required={expire}
-      />
+      {
+        expire &&
+        <>
+          <label htmlFor="expire-date">Expire Date</label>
+          <input
+            type="date"
+            name="expire-date"
+            id="expire-date"
+            value={expireDate}
+            onChange={handleExpireDate}
+            required={expire}
+          />
+        </>
+      }
 
       <label htmlFor="activity">Status</label>
       <select id="activity" value={userActivity} onChange={handleUserActivity}>

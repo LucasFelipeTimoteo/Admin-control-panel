@@ -1,7 +1,7 @@
 import React from 'react'
 import api from '../../services/api'
 
-import AddUserForm from '../../parts/AddUserForm'
+import AddUserForm from '../../components/AddUserForm'
 
 import useUsername from '../../hooks/useUsername'
 import useFirstName from '../../hooks/useFirstName'
@@ -13,8 +13,11 @@ import usePassword from '../../hooks/usePassword'
 import useConfirmPassword from '../../hooks/useConfirmPassword'
 import useExpire from '../../hooks/useExpire'
 import useExpireDate from '../../hooks/useExpireDate'
-import useStep from '../../hooks/useStep'
 import useUserActivity from '../../hooks/useUserActivity'
+import useProfile from '../../hooks/useProfile'
+
+import useStep from '../../hooks/useStep'
+import useCompany from '../../hooks/useCompany'
 
 export default function AddUser() {
   const { username, handleUsername } = useUsername()
@@ -26,10 +29,12 @@ export default function AddUser() {
   const { password, handlePassword } = usePassword()
   const { confirmPassword, handleConfirmPassword } = useConfirmPassword()
   const { expire, shouldExpire, shouldNotExpire } = useExpire()
-  const { expireDate, handleExpireDate } = useExpireDate()
+  const { expireDate, handleExpireDate, resetExpireDate } = useExpireDate()
   const { userActivity, handleUserActivity } = useUserActivity()
-  const { step, nextStep, prevStep } = useStep()
+  const { profile, handleProfile } = useProfile()
+  const { company, handleCompany } = useCompany()
 
+  const { step, nextStep, prevStep } = useStep()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -44,14 +49,22 @@ export default function AddUser() {
     ${confirmPassword}
     expire: ${expire}
     ${expireDate}
+    ${userActivity}
     `)
 
     const userData = {
       firstName,
       lastName,
       username,
-      profile: 'teste',
-      status: 'active'
+      email,
+      ...(phone && { phone }),
+      ...(mobilePhone && { mobilePhone }),
+      password,
+      confirmPassword,
+      ...(expireDate && { expireDate }),
+      status: userActivity,
+      profile,
+      company
     }
     const parsedUserdata = new URLSearchParams(userData)
 
@@ -95,16 +108,19 @@ export default function AddUser() {
 
           expire={expire}
           shouldExpire={shouldExpire}
-
           shouldNotExpire={shouldNotExpire}
+
           expireDate={expireDate}
-
           handleExpireDate={handleExpireDate}
-          userActivity={userActivity}
+          resetExpireDate={resetExpireDate}
 
-          handleUserActivity={handleUserActivity}
+          profile={profile}
+          handleProfile={handleProfile}
+
+          company={company}
+          handleCompany={handleCompany}
+
           step={step}
-
           nextStep={nextStep}
           prevStep={prevStep}
       />
