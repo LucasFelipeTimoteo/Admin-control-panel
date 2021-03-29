@@ -13,7 +13,7 @@ import usePassword from '../../hooks/usePassword'
 import useConfirmPassword from '../../hooks/useConfirmPassword'
 import useExpire from '../../hooks/useExpire'
 import useExpireDate from '../../hooks/useExpireDate'
-import useUserActivity from '../../hooks/useUserActivity'
+import useStatus from '../../hooks/useStatus'
 import useProfile from '../../hooks/useProfile'
 
 import useStep from '../../hooks/useStep'
@@ -30,7 +30,7 @@ export default function AddUser() {
   const { confirmPassword, handleConfirmPassword } = useConfirmPassword()
   const { expire, shouldExpire, shouldNotExpire } = useExpire()
   const { expireDate, handleExpireDate, resetExpireDate } = useExpireDate()
-  const { userActivity, handleUserActivity } = useUserActivity()
+  const { status, handleStatus } = useStatus()
   const { profile, handleProfile } = useProfile()
   const { company, handleCompany } = useCompany()
 
@@ -49,7 +49,7 @@ export default function AddUser() {
     ${confirmPassword}
     expire: ${expire}
     ${expireDate}
-    ${userActivity}
+    ${status}
     `)
 
     const userData = {
@@ -62,7 +62,7 @@ export default function AddUser() {
       password,
       confirmPassword,
       ...(expireDate && { expireDate }),
-      status: userActivity,
+      status,
       profile,
       company
     }
@@ -103,8 +103,8 @@ export default function AddUser() {
           confirmPassword={confirmPassword}
           handleConfirmPassword={handleConfirmPassword}
 
-          userActivity={userActivity}
-          handleUserActivity={handleUserActivity}
+          status={status}
+          handleStatus={handleStatus}
 
           expire={expire}
           shouldExpire={shouldExpire}

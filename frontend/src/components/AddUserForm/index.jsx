@@ -35,8 +35,8 @@ export default function AddUserForm({
   handleExpireDate,
   resetExpireDate,
 
-  userActivity,
-  handleUserActivity,
+  status,
+  handleStatus,
 
   profile,
   handleProfile,
@@ -75,8 +75,8 @@ export default function AddUserForm({
         confirmPassword={confirmPassword}
         handleConfirmPassword={handleConfirmPassword}
 
-        userActivity={userActivity}
-        handleUserActivity={handleUserActivity}
+        status={status}
+        handleStatus={handleStatus}
 
         expire={expire}
         shouldExpire={shouldExpire}

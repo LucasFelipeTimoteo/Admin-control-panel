@@ -1,14 +1,14 @@
 import './App.css';
-import { UserActivityProvider } from './contexts/userActivity';
+import { StatusFilterProvider } from './contexts/statusFilter';
 import Routes from './Routes';
 
 
 function App() {
   return (
     <div className="root">
-      <UserActivityProvider>
+      <StatusFilterProvider>
         <Routes />
-      </UserActivityProvider>
+      </StatusFilterProvider>
     </div>
   );
 }

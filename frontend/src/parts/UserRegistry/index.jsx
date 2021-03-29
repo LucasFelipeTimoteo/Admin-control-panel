@@ -34,8 +34,8 @@ export default function UserRegistry({
   handleExpireDate,
   resetExpireDate,
 
-  userActivity,
-  handleUserActivity,
+  status,
+  handleStatus,
 
   step,
   nextStep
@@ -156,7 +156,7 @@ export default function UserRegistry({
       }
 
       <label htmlFor="activity">Status</label>
-      <select id="activity" value={userActivity} onChange={handleUserActivity}>
+      <select id="activity" value={status} onChange={handleStatus}>
         <option value="active">Active</option>
         <option value="inactive">Inactive</option>
       </select>

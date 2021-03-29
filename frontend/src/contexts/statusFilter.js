@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 
 const userActivityContext = createContext()
 
-export function useUserActivity() {
+export function useStatusFilter() {
   const { userActivity, handleUserActivity } = useContext(userActivityContext)
 
   return {
@@ -11,7 +11,7 @@ export function useUserActivity() {
   }
 }
 
-export function UserActivityProvider({ children }) {
+export function StatusFilterProvider({ children }) {
   const [userActivity, setUserActivity] = useState('')
 
   const handleUserActivity = (event) => {

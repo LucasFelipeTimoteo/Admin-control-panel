@@ -1,7 +1,7 @@
 const joi = require('joi')
 
 const schema = joi.object({
-  id: joi.string().guid({ version: ['uuidv4'] }).required(),
+  // id: joi.string().guid({ version: ['uuidv4'] }).required(),
 
   firstName: joi.string().min(2).max(30).required(),
   lastName: joi.string().min(2).max(30).required(),
@@ -13,7 +13,7 @@ const schema = joi.object({
   mobilePhone: joi.string().min(4).max(15),
 
   password: joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
-  confirmPassword: joi.string().required().valid(joi.ref('password')),
+  confirmPassword: joi.string().required().valid(joi.ref('password')).required(),
 
   expireDate: joi.date(),
 
