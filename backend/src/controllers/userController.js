@@ -1,4 +1,3 @@
-// const express = require('express')
 const { v4: uuidv4 } = require('uuid');
 const bcryptjs = require('bcryptjs')
 const api = require("../services/api")
@@ -6,16 +5,21 @@ const schema = require('../models/User')
 
 
 module.exports.getUsers = async ({ res }) => {
-  const response = await api.get('/users')
-  const users = response.data
+  try {
+    const response = await api.get('/users')
+    const users = response.data
 
-  res.json(users)
+    res.json(users)
+  }
+  catch (error) {
+    res.status(400).json(error)
+  }
 }
 
 module.exports.addNewUser = async (req, res) => {
   try {
     await schema.validateAsync(req.body)
-    
+
     const {
       username,
       firstName,
@@ -29,11 +33,11 @@ module.exports.addNewUser = async (req, res) => {
       profile,
       company
     } = req.body
-    
+
     const id = uuidv4()
     const hashedPassword = await bcryptjs.hash(password, 10)
 
-    const userData = { 
+    const userData = {
       id,
       firstName,
       lastName,
@@ -46,7 +50,7 @@ module.exports.addNewUser = async (req, res) => {
       status,
       profile,
       company
-     }
+    }
 
     const response = await api.post('/users', userData)
     const user = response.data
@@ -54,6 +58,33 @@ module.exports.addNewUser = async (req, res) => {
     res.json(user)
   }
   catch (error) {
-    res.status(400).json({ error })
+    res.status(400).json(error)
+  }
+}
+
+module.exports.editUser = async (req, res) => {
+  const id = req.params.id
+  const body = req.body
+  const userNewdata = {id, ...body}
+
+  try {
+    const response = await api.put(`/users/${id}`, userNewdata)
+    const editedUser = response.data
+    res.json(editedUser)
+  }
+  catch (error) {
+    res.status(400).json(error)
+  }
+}
+
+module.exports.removeUser = async (req, res) => {
+  const id = req.params.id
+
+  try {
+    await api.delete(`/users/${id}`)
+    res.json({ message: 'User removed successfully' })
+  }
+  catch (error) {
+    res.status(400).json(error)
   }
 }

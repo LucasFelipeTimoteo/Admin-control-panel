@@ -36,7 +36,7 @@
       "mobilePhone": "99 999999999",
       "password": "$2a$10$Kw.LE2y30FQYrslaOFjmCO0gJrXmJBtKJIPuMbqOemyb4IACAxbe2",
       "expireDate": "11-11-2021",
-      "status": "active",
+      "status": "inactive",
       "profile": "driver",
       "company": "company2"
     }

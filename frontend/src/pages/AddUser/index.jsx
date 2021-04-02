@@ -3,6 +3,9 @@ import api from '../../services/api'
 
 import AddUserForm from '../../components/AddUserForm'
 
+import Profile from '../../parts/Profile'
+import UserRegistry from '../../parts/UserRegistry'
+
 import useUsername from '../../hooks/useUsername'
 import useFirstName from '../../hooks/useFirstName'
 import useLastName from '../../hooks/useLastName'
@@ -38,19 +41,6 @@ export default function AddUser() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(`
-    ${username}
-    ${firstName}
-    ${lastName}
-    ${email}
-    ${phone}
-    ${mobilePhone}
-    ${password}
-    ${confirmPassword}
-    expire: ${expire}
-    ${expireDate}
-    ${status}
-    `)
 
     const userData = {
       firstName,
@@ -70,7 +60,7 @@ export default function AddUser() {
 
     try {
       await api.post('/users', parsedUserdata)
-      // window.location = '/'
+      window.location = '/users-list'
     } catch (error) {
       console.log(error)
     }
@@ -78,7 +68,8 @@ export default function AddUser() {
 
   return (
     <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={handleSubmit}>
-      <AddUserForm
+      <AddUserForm>
+        <UserRegistry
           username={username}
           handleUsername={handleUsername}
 
@@ -114,6 +105,15 @@ export default function AddUser() {
           handleExpireDate={handleExpireDate}
           resetExpireDate={resetExpireDate}
 
+          step={step}
+          nextStep={nextStep}
+        />
+
+        <Profile
+          username={username}
+          firstName={firstName}
+          lastName={lastName}
+
           profile={profile}
           handleProfile={handleProfile}
 
@@ -121,9 +121,9 @@ export default function AddUser() {
           handleCompany={handleCompany}
 
           step={step}
-          nextStep={nextStep}
           prevStep={prevStep}
-      />
+        />
+      </AddUserForm>
     </form>
   )
 }

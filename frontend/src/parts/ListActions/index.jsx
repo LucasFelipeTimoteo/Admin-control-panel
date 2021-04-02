@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function ListActions() {
+export default function ListActions({ setStatusToInactive }) {
 
   return (
     <div>
       <button>EDIT</button>
-      <button>-</button>
+      <button onClick={setStatusToInactive}>-</button>
     </div>
   )
 }

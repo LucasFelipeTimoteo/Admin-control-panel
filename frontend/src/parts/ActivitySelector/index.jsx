@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function ActivitySelector({ userActivity, handleUserActivity }) {
+export default function ActivitySelector({ statusFilter, handleStatusFilter }) {
   return (
     <div>
-      <label htmlFor="selectActivity" style={{ marginRight: 5 }}>Activity</label>
-      <select value={userActivity} onChange={handleUserActivity} id="selectActivity">
+      <label htmlFor="statusFilter" style={{ marginRight: 5 }}>Activity</label>
+      <select value={statusFilter} onChange={handleStatusFilter} id="statusFilter">
         <option value="">
           None
         </option>

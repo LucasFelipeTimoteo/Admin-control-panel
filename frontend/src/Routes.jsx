@@ -9,6 +9,7 @@ import {
 import Home from './pages/Home'
 import AddUser from './pages/AddUser'
 import Header from './components/Header'
+import EditUser from './pages/EditUser'
 
 
 export default function Routes() {
@@ -17,14 +18,17 @@ export default function Routes() {
       <Header />
       
       <Switch>
-        <Route exact path="/user-list">
+        <Route exact path="/users-list">
           <Home />
         </Route>
         <Route path="/add-user">
           <AddUser />
         </Route>
+        <Route path="/edit-user">
+          <EditUser />
+        </Route>
 
-        <Redirect from="*" to="/user-list" />
+        <Redirect from="*" to="/users-list" />
       </Switch>
     </Router>
   )

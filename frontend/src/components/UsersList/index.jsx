@@ -1,7 +1,11 @@
 import React from 'react'
-import ListActions from '../../parts/ListActions'
+import { Link } from 'react-router-dom'
 
-export default function UsersList({ currentUsersList }) {
+import { useEditUserData } from '../../contexts/editUser'
+
+export default function UsersList({ currentUsersList, toggleStatusAction, deleteUser }) {
+  const { handleEditUserData } = useEditUserData()
+
   return (
     <table>
       <thead>
@@ -23,7 +27,16 @@ export default function UsersList({ currentUsersList }) {
               <td>{user.profile}</td>
               <td>{user.status}</td>
               <td>
-                <ListActions />
+                <div>
+                  <Link to="/edit-user" onClick={() => handleEditUserData(user)}>
+                    <button>EDIT</button>
+                  </Link>
+                  <button onClick={() => toggleStatusAction(user)}>
+                    Status
+                  </button>
+
+                  <button onClick={() => deleteUser(user.id)}>Remove</button>
+                </div>
               </td>
             </tr>
           ))
