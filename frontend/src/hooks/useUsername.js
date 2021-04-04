@@ -7,8 +7,13 @@ export default function useUsername() {
     setUsername(e.target.value)
   }
 
+  const handleEditUserDataUsername = (editUserDataUsername) => {
+    setUsername(editUserDataUsername)
+  }
+
   return {
     username,
-    handleUsername
+    handleUsername,
+    handleEditUserDataUsername
   }
 }

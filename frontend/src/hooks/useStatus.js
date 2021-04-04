@@ -8,8 +8,13 @@ export default function useStatus() {
     setStatus(e.target.value)
   }
 
+  const handleEditUserDataStatus = (editUserDataUsername) => {
+    setStatus(editUserDataUsername)
+  }
+
   return {
     status,
-    handleStatus
+    handleStatus,
+    handleEditUserDataStatus
   }
 }

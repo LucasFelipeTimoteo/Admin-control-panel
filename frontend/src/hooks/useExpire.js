@@ -11,9 +11,14 @@ export default function useExpire() {
     setExpire(false)
   }
 
+  const handleEditUserDataExpire = (editUserDataUsername) => {
+    setExpire(editUserDataUsername)
+  }
+
   return {
     expire,
     shouldExpire,
-    shouldNotExpire
+    shouldNotExpire,
+    handleEditUserDataExpire
   }
 }

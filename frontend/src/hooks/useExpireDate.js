@@ -14,9 +14,14 @@ export default function useExpireDate() {
     setExpireDate('')
   }
 
+  const handleEditUserDataExpireDate = (editUserDataUsername) => {
+    setExpireDate(editUserDataUsername)
+  }
+
   return {
     expireDate,
     handleExpireDate,
-    resetExpireDate
+    resetExpireDate,
+    handleEditUserDataExpireDate
   }
 }

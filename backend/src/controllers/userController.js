@@ -28,7 +28,6 @@ module.exports.addNewUser = async (req, res) => {
       phone,
       mobilePhone,
       password,
-      expireDate,
       status,
       profile,
       company
@@ -46,7 +45,6 @@ module.exports.addNewUser = async (req, res) => {
       phone,
       mobilePhone,
       password: hashedPassword,
-      expireDate,
       status,
       profile,
       company

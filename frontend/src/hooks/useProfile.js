@@ -7,8 +7,13 @@ export default function useProfile() {
     setProfile(e.target.value)
   }
 
+  const handleEditUserDataProfile = (editUserDataUsername) => {
+    setProfile(editUserDataUsername)
+  }
+
   return {
     profile, 
-    handleProfile
+    handleProfile,
+    handleEditUserDataProfile
   }
 }

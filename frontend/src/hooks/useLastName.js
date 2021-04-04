@@ -7,8 +7,13 @@ export default function useLastName() {
     setLastName(e.target.value)
   }
 
+  const handleEditUserDataLastName = (editUserDataUsername) => {
+    setLastName(editUserDataUsername)
+  }
+
   return {
     lastName,
-    handleLastName
+    handleLastName,
+    handleEditUserDataLastName
   }
 }

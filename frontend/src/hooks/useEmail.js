@@ -7,8 +7,13 @@ export default function useEmail() {
     setEmail(e.target.value)
   }
 
+  const handleEditUserDataEmail = (editUserDataUsername) => {
+    setEmail(editUserDataUsername)
+  }
+
   return {
     email,
-    handleEmail
+    handleEmail,
+    handleEditUserDataEmail
   }
 }

@@ -7,8 +7,13 @@ export default function useMobilePhone() {
     setMobilePhone(e.target.value)
   }
 
+  const handleEditUserDataMobilePhone = (editUserDataUsername) => {
+    setMobilePhone(editUserDataUsername)
+  }
+
   return {
     mobilePhone,
-    handleMobilePhone
+    handleMobilePhone,
+    handleEditUserDataMobilePhone
   }
 }

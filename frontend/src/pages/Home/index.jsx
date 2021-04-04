@@ -11,19 +11,11 @@ import SearchFilter from '../../parts/SearchFilter'
 import api from '../../services/api'
 
 export default function Home() {
-  const users = useUsers()
+  const { users, deleteUser } = useUsers()
   const { statusFilter, handleStatusFilter } = useStatusFilter()
   const { searchFilter, handleSearchFilter } = useSearchFilter()
 
   const { currentUsersList, toggleStatusAction } = useCurrentUsersList(users, statusFilter, searchFilter)
-
-  const deleteUser = async (userId) => {
-    try {
-      await api.delete(`/users/${userId}`)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   return (
     <>

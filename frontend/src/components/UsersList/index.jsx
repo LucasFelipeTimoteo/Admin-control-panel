@@ -28,14 +28,14 @@ export default function UsersList({ currentUsersList, toggleStatusAction, delete
               <td>{user.status}</td>
               <td>
                 <div>
-                  <Link to="/edit-user" onClick={() => handleEditUserData(user)}>
+                  <Link to="/add-user" onClick={() => handleEditUserData(user)}>
                     <button>EDIT</button>
                   </Link>
                   <button onClick={() => toggleStatusAction(user)}>
                     Status
                   </button>
 
-                  <button onClick={() => deleteUser(user.id)}>Remove</button>
+                  <button onClick={() => deleteUser(user)}>Remove</button>
                 </div>
               </td>
             </tr>

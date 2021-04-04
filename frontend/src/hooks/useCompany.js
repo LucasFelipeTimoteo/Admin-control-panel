@@ -7,8 +7,13 @@ export default function useCompany() {
     setCompany(e.target.value)
   }
 
+  const handleEditUserDataCompany = (editUserDataUsername) => {
+    setCompany(editUserDataUsername)
+  }
+
   return {
     company,
-    handleCompany
+    handleCompany,
+    handleEditUserDataCompany
   }
 }
