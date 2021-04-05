@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-export default function Profile({ profile, handleProfile, editUserdata }) {
+export default function Profile({
+  profile,
+  handleProfile,
+  editUserdata,
+  handleEditUserDataProfile
+}) {
+
+  useEffect(() => {
+    if (editUserdata.profile) {
+      handleEditUserDataProfile(editUserdata.profile)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <>
       <label htmlFor="profile">Profile</label>
       <select
         id="profile"
-        value={editUserdata.profile || profile}
+        value={profile}
         onChange={handleProfile}
         required
       >

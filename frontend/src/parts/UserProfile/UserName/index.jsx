@@ -7,19 +7,21 @@ export default function UserName({
   step,
   handleEditUserDataUsername
 }) {
-  const onChangeCondition = (handleUsername) => (
-    handleUsername ? handleUsername : null
-  )
+
+  const onChangeCondition = (handleUsername) => {
+    return handleUsername ? handleUsername : null
+  }
 
   const readOnlyCondition = (step) => (
     step === 1 ? false : true
   )
 
   useEffect(() => {
-    if (editUserdata.username) {
+    if (editUserdata.username && step === 1) {
       handleEditUserDataUsername(editUserdata.username)
     }
-  }, [editUserdata, handleEditUserDataUsername])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step]) 
 
   return (
     <>

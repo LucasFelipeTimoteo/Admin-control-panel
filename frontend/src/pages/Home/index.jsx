@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+
 import ToolBar from '../../components/ToolBar'
 import UsersList from '../../components/UsersList'
+
+import ActivitySelector from '../../parts/ActivitySelector'
+import AddUserButton from '../../parts/AddUserButton'
+import SearchFilter from '../../parts/SearchFilter'
+
 import useCurrentUsersList from '../../hooks/useCurrentUsersList'
 import useSearchFilter from '../../hooks/useSearchFilter'
 import useStatusFilter from '../../hooks/useStatusFilter'
 import useUsers from '../../hooks/useUsers'
-import ActivitySelector from '../../parts/ActivitySelector'
-import AddUserButton from '../../parts/AddUserButton'
-import SearchFilter from '../../parts/SearchFilter'
-import api from '../../services/api'
 
 export default function Home() {
   const { users, deleteUser } = useUsers()

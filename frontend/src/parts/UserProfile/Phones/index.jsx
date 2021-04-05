@@ -18,7 +18,8 @@ export default function Phones({
     if(editUserdata.mobilePhone){
       handleEditUserDataMobilePhone(editUserdata.mobilePhone)
     }
-  }, [editUserdata, handleEditUserDataPhone])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
@@ -27,7 +28,7 @@ export default function Phones({
         type="tel"
         name="phone"
         id="phone"
-        value={editUserdata.phone || phone}
+        value={phone}
         onChange={handlePhone}
         required
       />
@@ -37,7 +38,7 @@ export default function Phones({
         type="tel"
         name="mobile-phone"
         id="mobile-phone"
-        value={editUserdata.mobilePhone || mobilePhone}
+        value={mobilePhone}
         onChange={handleMobilePhone}
         required
       />

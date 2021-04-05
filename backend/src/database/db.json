@@ -30,28 +30,28 @@
       "id": "079f4fb0-8d92-4b8a-b20f-558f74caf102",
       "firstName": "tiago",
       "lastName": "tapparo",
-      "username": "tiago.taparo",
+      "username": "tiago.tapparo",
       "email": "taparo@email.com",
       "phone": "99 999999999",
       "mobilePhone": "99 999999999",
-      "password": "$2a$10$Kw.LE2y30FQYrslaOFjmCO0gJrXmJBtKJIPuMbqOemyb4IACAxbe2",
-      "expireDate": "11-11-2021",
+      "password": "",
+      "confirmPassword": "",
       "status": "inactive",
       "profile": "driver",
       "company": "company2"
     },
     {
-      "id": "561f0587-cd0f-4d81-b278-15600a23d0b0",
+      "id": "def019ef-6e0c-4d6e-839e-4e12ca98e9f1",
       "firstName": "lucas",
-      "lastName": "timoteo",
-      "username": "lucasFelipeTimoteo",
-      "email": "lucasfelipetimoteo@gmail.com",
-      "phone": "11989858870",
-      "mobilePhone": "11989858870",
-      "password": "$2a$10$7LzqqeTazPA8hp53AI/uFuZcn8KpcN3Z75.XQPBZ0X0DYVQdpNp.e",
-      "status": "inactive",
+      "lastName": "felipe timoteo",
+      "username": "lucas.felipe.admin",
+      "email": "emai@email.com",
+      "phone": "1189858870",
+      "mobilePhone": "1189858870",
+      "password": "$2a$10$je.cOer348MGAc3VjWXa9uATbYzoUG0acyzIecgUNQn1MbNzRpHk2",
+      "status": "active",
       "profile": "other",
-      "company": "company2"
+      "company": "company1"
     }
   ]
 }

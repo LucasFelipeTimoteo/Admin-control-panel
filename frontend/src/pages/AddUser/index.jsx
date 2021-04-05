@@ -2,7 +2,7 @@ import React from 'react'
 
 import AddUserForm from '../../components/AddUserForm'
 
-import UserProfile from '../../parts/Profile'
+import UserProfile from '../../parts/UserProfile'
 import UserRegistry from '../../parts/UserRegistry'
 
 import useUsername from '../../hooks/useUsername'
@@ -13,24 +13,22 @@ import usePhone from '../../hooks/usePhone'
 import useMobilePhone from '../../hooks/useMobilePhone'
 import usePassword from '../../hooks/usePassword'
 import useConfirmPassword from '../../hooks/useConfirmPassword'
-// import useExpire from '../../hooks/useExpire'
-// import useExpireDate from '../../hooks/useExpireDate'
 import useStatus from '../../hooks/useStatus'
 import useProfile from '../../hooks/useProfile'
-
 import useStep from '../../hooks/useStep'
 import useCompany from '../../hooks/useCompany'
-import { useEditUserData } from '../../contexts/editUser'
-import UserName from '../../parts/Profile/UserName'
-import FirstAndLastName from '../../parts/Profile/FirstAndLastName'
-import Email from '../../parts/Profile/Email'
-import Phones from '../../parts/Profile/Phones'
-import PasswordAndConfirmPassword from '../../parts/Profile/PasswordAndConfirmPassword'
-// import ExpireAndExpiredate from '../../parts/Profile/ExpireAndExpireDate'
-import Status from '../../parts/Profile/Status'
-import FormButtons from '../../parts/Profile/FormButtons'
-import Company from '../../parts/Profile/Company'
-import Profile from '../../parts/Profile/Profile'
+
+import UserName from '../../parts/UserProfile/UserName'
+import FirstAndLastName from '../../parts/UserProfile/FirstAndLastName'
+import Email from '../../parts/UserProfile/Email'
+import Phones from '../../parts/UserProfile/Phones'
+import PasswordAndConfirmPassword from '../../parts/UserProfile/PasswordAndConfirmPassword'
+import Status from '../../parts/UserProfile/Status'
+import FormButtons from '../../parts/UserProfile/FormButtons'
+import Company from '../../parts/UserProfile/Company'
+import Profile from '../../parts/UserProfile/Profile'
+
+import { useEditUserData } from '../../contexts/editUserData'
 
 export default function AddUser() {
   const { username, handleUsername, handleEditUserDataUsername } = useUsername()
@@ -44,20 +42,19 @@ export default function AddUser() {
   const { password, handlePassword } = usePassword()
   const { confirmPassword, handleConfirmPassword } = useConfirmPassword()
 
-  // const { expire, shouldExpire, shouldNotExpire, handleEditUserDataExpire } = useExpire()
-  // const { expireDate, handleExpireDate, resetExpireDate, handleEditUserDataExpireDate } = useExpireDate()
-
   const { status, handleStatus, handleEditUserDataStatus } = useStatus()
   const { profile, handleProfile, handleEditUserDataProfile } = useProfile()
   const { company, handleCompany, handleEditUserDataCompany } = useCompany()
 
   const { step, nextStep, prevStep } = useStep()
 
-  const { editUserdata, handleEditUserData } = useEditUserData()
+  const { editUserdata, handleEditUserData, clearEditUserData } = useEditUserData()
+
+  const CurrentForm = AddUserForm
 
   return (
     <form style={{ display: 'flex', flexDirection: 'column' }}>
-      <AddUserForm>
+      <CurrentForm>
         <UserRegistry step={step}>
           <UserName
             username={username}
@@ -110,20 +107,6 @@ export default function AddUser() {
             handleConfirmPassword={handleConfirmPassword}
           />
 
-          {/* 
-            expire={expire}
-            shouldExpire={shouldExpire}
-            shouldNotExpire={shouldNotExpire}
-            resetExpireDate={resetExpireDate}
-            expireDate={expireDate}
-            handleExpireDate={handleExpireDate}
-  
-            editUserdata={editUserdata}
-            handleEditUserData={handleEditUserData}
-            handleEditUserDataExpire={handleEditUserDataExpire}
-            handleEditUserDataExpireDate={handleEditUserDataExpireDate}
-          /> */}
-
           <Status
             status={status}
             handleStatus={handleStatus}
@@ -136,6 +119,7 @@ export default function AddUser() {
           <FormButtons
             step={step}
             nextStep={nextStep}
+            clearEditUserData={clearEditUserData}
           />
         </UserRegistry>
 
@@ -183,17 +167,16 @@ export default function AddUser() {
             status={status}
             profile={profile}
             company={company}
-            // expire={expire}
-            // expireDate={expireDate}
 
             step={step}
             prevStep={prevStep}
 
             editUserdata={editUserdata}
             handleEditUserData={handleEditUserData}
+            clearEditUserData={clearEditUserData}
           />
         </UserProfile>
-      </AddUserForm>
+      </CurrentForm>
     </form>
   )
 }

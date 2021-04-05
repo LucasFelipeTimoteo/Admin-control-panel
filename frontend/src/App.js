@@ -1,5 +1,5 @@
 import './App.css';
-import { EditUserProvider } from './contexts/editUser';
+import { EditUserProvider } from './contexts/editUserData';
 import Routes from './Routes';
 
 

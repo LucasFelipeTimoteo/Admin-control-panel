@@ -5,11 +5,10 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-
-import Home from './pages/Home'
-import AddUser from './pages/AddUser'
 import Header from './components/Header'
-import EditUser from './pages/EditUser'
+import AddUser from './pages/AddUser'
+import Home from './pages/Home'
+
 
 
 export default function Routes() {
@@ -23,9 +22,6 @@ export default function Routes() {
         </Route>
         <Route path="/add-user">
           <AddUser />
-        </Route>
-        <Route path="/edit-user">
-          <EditUser />
         </Route>
 
         <Redirect from="*" to="/users-list" />

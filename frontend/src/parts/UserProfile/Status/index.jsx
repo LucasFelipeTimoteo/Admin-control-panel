@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function Status({
   status,
   handleStatus,
-  editUserdata
+  editUserdata,
+  handleEditUserDataStatus
 }) {
+
+  useEffect(() => {
+    if (editUserdata.status) {
+      handleEditUserDataStatus(editUserdata.status)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <>
       <label htmlFor="activity">Status</label>

@@ -23,14 +23,15 @@ export default function FirstAndLastName({
   )
 
   useEffect(() => {
-    if (editUserdata.firstName) {
+    if (editUserdata.firstName && step === 1) {
       handleEditUserDataFirstName(editUserdata.firstName)
     }
 
-    if (editUserdata.lastName) {
+    if (editUserdata.lastName && step === 1) {
       handleEditUserDataLastName(editUserdata.lastName)
     }
-  }, [editUserdata, handleEditUserDataFirstName, handleEditUserDataLastName])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step])
 
   return (
     <>
@@ -38,7 +39,7 @@ export default function FirstAndLastName({
       <input type="text"
         name="firstName"
         id="firstName"
-        value={editUserdata.firstName || firstName}
+        value={firstName}
         onChange={firstNameOnChangeCondition(handleFirstName)}
         readOnly={readOnlyCondition(step)}
         required
@@ -48,7 +49,7 @@ export default function FirstAndLastName({
       <input type="text"
         name="lastName"
         id="lastName"
-        value={editUserdata.lastName || lastName}
+        value={lastName}
         onChange={lastNameOnChangeCondition(handleLastName)}
         readOnly={readOnlyCondition(step)}
         required

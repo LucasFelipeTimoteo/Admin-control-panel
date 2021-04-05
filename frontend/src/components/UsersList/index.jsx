@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { useEditUserData } from '../../contexts/editUser'
+import { useEditUserData } from '../../contexts/editUserData'
 
 export default function UsersList({ currentUsersList, toggleStatusAction, deleteUser }) {
   const { handleEditUserData } = useEditUserData()

@@ -9,8 +9,6 @@ export default function FormButtons({
   phone,
   mobilePhone,
   confirmPassword,
-  // expire,
-  // expireDate,
   password,
   email,
   status,
@@ -19,10 +17,37 @@ export default function FormButtons({
   step,
   prevStep,
   nextStep,
-  editUserdata
+  editUserdata,
+  clearEditUserData
 }) {
-
-  const handleSubmit = async (e) => {
+  
+  const saveNewUser = async (e) => {
+    e.preventDefault()
+    
+    const userData = {
+      firstName,
+      lastName,
+      username,
+      email,
+      ...(phone && { phone }),
+      ...(mobilePhone && { mobilePhone }),
+      password,
+      confirmPassword,
+      status,
+      profile,
+      company
+    }
+    const parsedUserdata = new URLSearchParams(userData)
+    
+    try {
+      await api.post('/users', parsedUserdata)
+      window.location = '/users-list'
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  const updateUser = async (e) => {
     e.preventDefault()
 
     const userData = {
@@ -34,8 +59,6 @@ export default function FormButtons({
       ...(mobilePhone && { mobilePhone }),
       password,
       confirmPassword,
-      // expire,
-      // ...(expireDate && { expireDate }),
       status,
       profile,
       company
@@ -43,23 +66,19 @@ export default function FormButtons({
     const parsedUserdata = new URLSearchParams(userData)
 
     try {
-      await api.post('/users', parsedUserdata)
+      await api.put(`/users/${editUserdata.id}`, parsedUserdata)
       window.location = '/users-list'
     } catch (error) {
       console.log(error)
     }
   }
-  
-  const buttonShouldUpdateOrSaveUserData = (editUserdata) => (
-    Object.entries(editUserdata).length !== 0 ? 'Update' : 'Save'
-  )
 
   return (
     <>
       {
         step === 1
           ?
-          <Link to="users-list">
+          <Link to="users-list" onClick={clearEditUserData}>
             <button>Cancel</button>
           </Link>
           :
@@ -72,9 +91,11 @@ export default function FormButtons({
           <button
             type='button'
             edit_userdata={editUserdata}
-            onClick={handleSubmit}
+            onClick={
+              Object.entries(editUserdata).length !== 0 ? updateUser : saveNewUser
+            }
           >
-            { buttonShouldUpdateOrSaveUserData(editUserdata) }
+            { Object.entries(editUserdata).length !== 0 ? 'Update' : 'Save' }
           </button>
           :
           <button
