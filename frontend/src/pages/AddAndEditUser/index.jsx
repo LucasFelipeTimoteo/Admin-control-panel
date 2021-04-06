@@ -1,36 +1,36 @@
 import React from 'react'
 
-import AddUserForm from '../../components/AddUserForm'
+import UserForm from '../../components/UserForm'
 
 import UserProfile from '../../parts/UserProfile'
 import UserRegistry from '../../parts/UserRegistry'
 
-import useUsername from '../../hooks/useUsername'
-import useFirstName from '../../hooks/useFirstName'
-import useLastName from '../../hooks/useLastName'
-import useEmail from '../../hooks/useEmail'
-import usePhone from '../../hooks/usePhone'
-import useMobilePhone from '../../hooks/useMobilePhone'
-import usePassword from '../../hooks/usePassword'
-import useConfirmPassword from '../../hooks/useConfirmPassword'
-import useStatus from '../../hooks/useStatus'
-import useProfile from '../../hooks/useProfile'
-import useStep from '../../hooks/useStep'
-import useCompany from '../../hooks/useCompany'
+import useUsername from '../../hooks/userFormHooks/useUsername'
+import useFirstName from '../../hooks/userFormHooks/useFirstName'
+import useLastName from '../../hooks/userFormHooks/useLastName'
+import useEmail from '../../hooks/userFormHooks/useEmail'
+import usePhone from '../../hooks/userFormHooks/usePhone'
+import useMobilePhone from '../../hooks/userFormHooks/useMobilePhone'
+import usePassword from '../../hooks/userFormHooks/usePassword'
+import useConfirmPassword from '../../hooks/userFormHooks/useConfirmPassword'
+import useStatus from '../../hooks/userFormHooks/useStatus'
+import useProfile from '../../hooks/userFormHooks/useProfile'
+import useStep from '../../hooks/userFormHooks/useStep'
+import useCompany from '../../hooks/userFormHooks/useCompany'
 
-import UserName from '../../parts/UserProfile/UserName'
-import FirstAndLastName from '../../parts/UserProfile/FirstAndLastName'
-import Email from '../../parts/UserProfile/Email'
-import Phones from '../../parts/UserProfile/Phones'
-import PasswordAndConfirmPassword from '../../parts/UserProfile/PasswordAndConfirmPassword'
-import Status from '../../parts/UserProfile/Status'
-import FormButtons from '../../parts/UserProfile/FormButtons'
-import Company from '../../parts/UserProfile/Company'
-import Profile from '../../parts/UserProfile/Profile'
+import UserName from '../../parts/UserName'
+import FirstAndLastName from '../../parts/FirstAndLastName'
+import Email from '../../parts/Email'
+import Phones from '../../parts/Phones'
+import PasswordAndConfirmPassword from '../../parts/PasswordAndConfirmPassword'
+import Status from '../../parts/Status'
+import FormButtons from '../../parts/FormButtons'
+import Company from '../../parts/Company'
+import Profile from '../../parts/Profile'
 
 import { useEditUserData } from '../../contexts/editUserData'
 
-export default function AddUser() {
+export default function AddAndEditUser() {
   const { username, handleUsername, handleEditUserDataUsername } = useUsername()
   const { firstName, handleFirstName, handleEditUserDataFirstName } = useFirstName()
   const { lastName, handleLastName, handleEditUserDataLastName } = useLastName()
@@ -50,11 +50,9 @@ export default function AddUser() {
 
   const { editUserdata, handleEditUserData, clearEditUserData } = useEditUserData()
 
-  const CurrentForm = AddUserForm
-
   return (
     <form style={{ display: 'flex', flexDirection: 'column' }}>
-      <CurrentForm>
+      <UserForm>
         <UserRegistry step={step}>
           <UserName
             username={username}
@@ -176,7 +174,7 @@ export default function AddUser() {
             clearEditUserData={clearEditUserData}
           />
         </UserProfile>
-      </CurrentForm>
+      </UserForm>
     </form>
   )
 }

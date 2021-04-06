@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom'
 
 import { useEditUserData } from '../../contexts/editUserData'
 
-export default function UsersList({ currentUsersList, toggleStatusAction, deleteUser }) {
+export default function UsersList({
+  currentUsersList,
+  toggleStatusAction,
+  deleteUser
+}) {
   const { handleEditUserData } = useEditUserData()
 
   return (
@@ -28,7 +32,7 @@ export default function UsersList({ currentUsersList, toggleStatusAction, delete
               <td>{user.status}</td>
               <td>
                 <div>
-                  <Link to="/add-user" onClick={() => handleEditUserData(user)}>
+                  <Link to="/add-and-edit-user" onClick={() => handleEditUserData(user)}>
                     <button>EDIT</button>
                   </Link>
                   <button onClick={() => toggleStatusAction(user)}>

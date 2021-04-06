@@ -7,17 +7,17 @@ import ActivitySelector from '../../parts/ActivitySelector'
 import AddUserButton from '../../parts/AddUserButton'
 import SearchFilter from '../../parts/SearchFilter'
 
-import useCurrentUsersList from '../../hooks/useCurrentUsersList'
-import useSearchFilter from '../../hooks/useSearchFilter'
-import useStatusFilter from '../../hooks/useStatusFilter'
-import useUsers from '../../hooks/useUsers'
+import useCurrentUsersList from '../../hooks/usersListHooks/useCurrentUsersList'
+import useSearchFilter from '../../hooks/usersListHooks/useSearchFilter'
+import useStatusFilter from '../../hooks/usersListHooks/useStatusFilter'
+import useUsers from '../../hooks/apiHooks/useUsers'
 
-export default function Home() {
-  const { users, deleteUser } = useUsers()
+export default function AdminPanel() {
+  const { users, deleteUser, toggleStatusAction } = useUsers()
   const { statusFilter, handleStatusFilter } = useStatusFilter()
   const { searchFilter, handleSearchFilter } = useSearchFilter()
 
-  const { currentUsersList, toggleStatusAction } = useCurrentUsersList(users, statusFilter, searchFilter)
+  const { currentUsersList } = useCurrentUsersList(users, statusFilter, searchFilter)
 
   return (
     <>

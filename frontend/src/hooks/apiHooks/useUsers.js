@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import api from "../services/api"
+import api from "../../services/api"
 
 export default function useUsers() {
   const [users, setUsers] = useState([])
@@ -25,8 +25,21 @@ export default function useUsers() {
     } catch (error) {
       console.log(error)
     }
+  }
 
-    // window.location = 'users-list'
+  const toggleStatusAction = (selectedUser) => {
+    users.map(async (user) => {
+      if(selectedUser.id !== user.id){
+        return user
+      }
+      try {
+        await api.patch(`/users/${selectedUser.id}`, selectedUser)
+      } catch (error) {
+        console.log(error)
+      }
+    })
+
+    getUsers()
   }
 
   useEffect(() => {
@@ -36,6 +49,7 @@ export default function useUsers() {
   return {
     users,
     deleteUser,
-    editUser
+    editUser,
+    toggleStatusAction
   }
 }

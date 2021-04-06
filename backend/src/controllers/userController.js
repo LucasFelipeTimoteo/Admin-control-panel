@@ -3,7 +3,6 @@ const bcryptjs = require('bcryptjs')
 const api = require("../services/api")
 const schema = require('../models/User')
 
-
 module.exports.getUsers = async ({ res }) => {
   try {
     const response = await api.get('/users')
@@ -35,6 +34,7 @@ module.exports.addNewUser = async (req, res) => {
 
     const id = uuidv4()
     const hashedPassword = await bcryptjs.hash(password, 10)
+    console.log(hashedPassword)
 
     const userData = {
       id,
@@ -63,7 +63,7 @@ module.exports.addNewUser = async (req, res) => {
 module.exports.editUser = async (req, res) => {
   const id = req.params.id
   const body = req.body
-  const userNewdata = {id, ...body}
+  const userNewdata = { id, ...body }
 
   try {
     const response = await api.put(`/users/${id}`, userNewdata)
@@ -81,6 +81,24 @@ module.exports.removeUser = async (req, res) => {
   try {
     await api.delete(`/users/${id}`)
     res.json({ message: 'User removed successfully' })
+  }
+  catch (error) {
+    res.status(400).json(error)
+  }
+}
+
+module.exports.toggleUserStatus = async (req, res) => {
+  const id = req.params.id
+  const {status} = req.body
+  console.log(status)
+
+  const newStatus = status === 'active' ? 'inactive' : 'active'
+  const newUserStatus = { status: newStatus }
+
+  try {
+    const response = await api.patch(`/users/${id}`, newUserStatus)
+    const editedUser = response.data
+    res.json(editedUser)
   }
   catch (error) {
     res.status(400).json(error)

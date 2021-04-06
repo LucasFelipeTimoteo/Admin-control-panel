@@ -3,24 +3,6 @@ import { useEffect, useState } from "react"
 export default function useCurrentUsersList(users, statusFilter, searchFilter) {
   const [currentUsersList, setCurrentUsersList] = useState(users)
 
-  const toggleStatusAction = (selectedUser) => {
-    const newUsersList = currentUsersList.map(user => {
-      if(selectedUser.id !== user.id){
-        return user
-      }
-
-      if(selectedUser.status === 'inactive') {
-        user.status = 'active'
-      } else if(selectedUser.status === 'active') {
-        user.status = 'inactive'
-      }
-
-      return user
-    })
-
-    setCurrentUsersList(newUsersList)
-  }
-
   useEffect(() => {
 
     const usersFilteredByStatus = users.filter(user => (
@@ -43,6 +25,6 @@ export default function useCurrentUsersList(users, statusFilter, searchFilter) {
 
   return {
     currentUsersList,
-    toggleStatusAction
+    
   }
 }

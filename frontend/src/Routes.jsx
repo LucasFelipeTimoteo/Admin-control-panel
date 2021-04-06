@@ -6,8 +6,8 @@ import {
   Switch
 } from 'react-router-dom'
 import Header from './components/Header'
-import AddUser from './pages/AddUser'
-import Home from './pages/Home'
+import AddAndEditUser from './pages/AddAndEditUser'
+import AdminPanel from './pages/AdminPanel'
 
 
 
@@ -18,10 +18,10 @@ export default function Routes() {
       
       <Switch>
         <Route exact path="/users-list">
-          <Home />
+          <AdminPanel />
         </Route>
-        <Route path="/add-user">
-          <AddUser />
+        <Route path="/add-and-edit-user">
+          <AddAndEditUser />
         </Route>
 
         <Redirect from="*" to="/users-list" />
