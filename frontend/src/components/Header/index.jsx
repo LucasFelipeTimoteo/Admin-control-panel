@@ -6,7 +6,7 @@ export default function Header({ userForm, userList }) {
     <div className="header">
       {
         userList &&
-        <h1 className="header-title">Admin dashboard</h1>
+        <h1 className="header-title">Admin control panel</h1>
       }
       {
         userForm &&
