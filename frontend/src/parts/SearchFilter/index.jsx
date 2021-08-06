@@ -7,6 +7,7 @@ export default function SearchFilter({ searchFilter, handleSearchFilter }) {
         type="text"
         value={searchFilter}
         onChange={handleSearchFilter}
+        placeholder="Search for..."
       />
     </>
   )

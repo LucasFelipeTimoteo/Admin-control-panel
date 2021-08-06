@@ -1,0 +1,11 @@
+.toolbar { 
+  background-color: #63aece;
+  height: 40px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: none;
+  margin-bottom: 30px;
+  color: whitesmoke;
+}

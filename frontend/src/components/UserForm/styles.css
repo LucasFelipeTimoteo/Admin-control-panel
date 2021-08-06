@@ -1,0 +1,6 @@
+.user-form {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 700px);
+  margin-top: 20px;
+}

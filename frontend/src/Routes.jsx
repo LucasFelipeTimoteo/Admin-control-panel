@@ -5,7 +5,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-import Header from './components/Header'
+
 import AddAndEditUser from './pages/AddAndEditUser'
 import AdminPanel from './pages/AdminPanel'
 
@@ -13,9 +13,7 @@ import AdminPanel from './pages/AdminPanel'
 
 export default function Routes() {
   return (
-    <Router>
-      <Header />
-      
+    <Router>      
       <Switch>
         <Route exact path="/users-list">
           <AdminPanel />

@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import api from '../../services/api'
+import { useHistory } from 'react-router-dom'
+import api from '../../../services/api'
+import './styles.css'
 
 export default function FormButtons({
   firstName,
@@ -20,10 +21,15 @@ export default function FormButtons({
   editUserdata,
   clearEditUserData
 }) {
-  
+  const history = useHistory()
+
+  const handleCancel = () => {
+    history.push("users-list")
+  }
+
   const saveNewUser = async (e) => {
     e.preventDefault()
-    
+
     const userData = {
       firstName,
       lastName,
@@ -38,15 +44,16 @@ export default function FormButtons({
       company
     }
     const parsedUserdata = new URLSearchParams(userData)
-    
+
     try {
       await api.post('/users', parsedUserdata)
+      sessionStorage.clear()
       window.location = '/users-list'
     } catch (error) {
       console.log(error)
     }
   }
-  
+
   const updateUser = async (e) => {
     e.preventDefault()
 
@@ -74,37 +81,52 @@ export default function FormButtons({
   }
 
   return (
-    <>
+    <div className="form-buttons-wrapper">
       {
         step === 1
           ?
-          <Link to="users-list" onClick={clearEditUserData}>
-            <button>Cancel</button>
-          </Link>
+          <button
+            className="form-btn"
+            type="button"
+            onClick={() => {
+              clearEditUserData()
+              handleCancel()
+            }}
+          >
+            Cancel
+          </button>
           :
-          <button onClick={prevStep}>Prev</button>
+          <button
+            className="form-btn"
+            type="button"
+            onClick={prevStep}
+          >
+            Prev
+          </button>
       }
 
       {
         step === 2
           ?
           <button
+            className="form-btn next-or-save-btn"
             type='button'
             edit_userdata={editUserdata}
             onClick={
               Object.entries(editUserdata).length !== 0 ? updateUser : saveNewUser
             }
           >
-            { Object.entries(editUserdata).length !== 0 ? 'Update' : 'Save' }
+            {Object.entries(editUserdata).length !== 0 ? 'Update' : 'Save'}
           </button>
           :
           <button
+            className="form-btn next-or-save-btn"
             type='button'
             onClick={nextStep}
           >
             next
           </button>
       }
-    </>
+    </div>
   )
 }

@@ -1,12 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import './styles.css'
 
 export default function AddUserButton() {
+  const history = useHistory()
+
+  const handleAddUserButtonClick = () => {
+    history.push("/add-and-edit-user")
+  }
+
   return (
-    <div>
-      <Link to="/add-and-edit-user" >
-        <button>+</button>
-      </Link>
-    </div>
+    <button
+      className="add-user-button"
+      onClick={handleAddUserButtonClick}
+    >
+      +
+    </button>
   )
 }

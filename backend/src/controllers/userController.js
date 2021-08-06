@@ -34,26 +34,25 @@ module.exports.addNewUser = async (req, res) => {
 
     const id = uuidv4()
     const hashedPassword = await bcryptjs.hash(password, 10)
-    console.log(hashedPassword)
 
     const userData = {
       id,
-      firstName,
-      lastName,
+      firstName: firstName.toLocaleLowerCase(),
+      lastName: lastName.toLocaleLowerCase(),
       username,
       email,
       phone,
       mobilePhone,
       password: hashedPassword,
-      status,
-      profile,
-      company
+      status: status.toLocaleLowerCase(),
+      profile: profile.toLocaleLowerCase(),
+      company: company.toLocaleLowerCase()
     }
 
     const response = await api.post('/users', userData)
     const user = response.data
 
-    res.json(user)
+    res.status(201).json(user)
   }
   catch (error) {
     res.status(400).json(error)
@@ -61,9 +60,38 @@ module.exports.addNewUser = async (req, res) => {
 }
 
 module.exports.editUser = async (req, res) => {
+  await schema.validateAsync(req.body)
+
   const id = req.params.id
-  const body = req.body
-  const userNewdata = { id, ...body }
+  const {
+    username,
+    firstName,
+    lastName,
+    email,
+    phone,
+    mobilePhone,
+    password,
+    status,
+    profile,
+    company
+  } = req.body
+
+  const hashedPassword = await bcryptjs.hash(password, 10)
+
+  const userNewdata = {
+    id,
+    firstName: firstName.toLocaleLowerCase(),
+    lastName: lastName.toLocaleLowerCase(),
+    username,
+    email,
+    phone,
+    mobilePhone,
+    password: hashedPassword,
+    status: status.toLocaleLowerCase(),
+    profile: profile.toLocaleLowerCase(),
+    company: company.toLocaleLowerCase()
+  }
+
 
   try {
     const response = await api.put(`/users/${id}`, userNewdata)
@@ -89,7 +117,7 @@ module.exports.removeUser = async (req, res) => {
 
 module.exports.toggleUserStatus = async (req, res) => {
   const id = req.params.id
-  const {status} = req.body
+  const { status } = req.body
   console.log(status)
 
   const newStatus = status === 'active' ? 'inactive' : 'active'
@@ -98,7 +126,7 @@ module.exports.toggleUserStatus = async (req, res) => {
   try {
     const response = await api.patch(`/users/${id}`, newUserStatus)
     const editedUser = response.data
-    res.json(editedUser)
+    res.status(204).json(editedUser)
   }
   catch (error) {
     res.status(400).json(error)

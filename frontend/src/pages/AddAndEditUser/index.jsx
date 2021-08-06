@@ -2,8 +2,8 @@ import React from 'react'
 
 import UserForm from '../../components/UserForm'
 
-import UserProfile from '../../parts/UserProfile'
-import UserRegistry from '../../parts/UserRegistry'
+import UserProfile from '../../parts/formWrappers/UserProfile'
+import UserRegistry from '../../parts/formWrappers/UserRegistry'
 
 import useUsername from '../../hooks/userFormHooks/useUsername'
 import useFirstName from '../../hooks/userFormHooks/useFirstName'
@@ -18,17 +18,19 @@ import useProfile from '../../hooks/userFormHooks/useProfile'
 import useStep from '../../hooks/userFormHooks/useStep'
 import useCompany from '../../hooks/userFormHooks/useCompany'
 
-import UserName from '../../parts/UserName'
-import FirstAndLastName from '../../parts/FirstAndLastName'
-import Email from '../../parts/Email'
-import Phones from '../../parts/Phones'
-import PasswordAndConfirmPassword from '../../parts/PasswordAndConfirmPassword'
-import Status from '../../parts/Status'
-import FormButtons from '../../parts/FormButtons'
-import Company from '../../parts/Company'
-import Profile from '../../parts/Profile'
+import UserName from '../../parts/FormParts/UserName'
+import FirstAndLastName from '../../parts/FormParts/FirstAndLastName'
+import Email from '../../parts/FormParts/Email'
+import Phones from '../../parts/FormParts/Phones'
+import PasswordAndConfirmPassword from '../../parts/FormParts/PasswordAndConfirmPassword'
+import Status from '../../parts/FormParts/Status'
+import FormButtons from '../../parts/FormParts/FormButtons'
+import Company from '../../parts/FormParts/Company'
+import Profile from '../../parts/FormParts/Profile'
 
 import { useEditUserData } from '../../contexts/editUserData'
+import Header from '../../components/Header'
+import './styles.css'
 
 export default function AddAndEditUser() {
   const { username, handleUsername, handleEditUserDataUsername } = useUsername()
@@ -51,7 +53,8 @@ export default function AddAndEditUser() {
   const { editUserdata, handleEditUserData, clearEditUserData } = useEditUserData()
 
   return (
-    <form style={{ display: 'flex', flexDirection: 'column' }}>
+    <div className="edit-and-add-user-wrapper">
+      <Header userForm />
       <UserForm>
         <UserRegistry step={step}>
           <UserName
@@ -92,7 +95,7 @@ export default function AddAndEditUser() {
             mobilePhone={mobilePhone}
             handleMobilePhone={handleMobilePhone}
             editUserdata={editUserdata}
-        
+
             handleEditUserData={handleEditUserData}
             handleEditUserDataPhone={handleEditUserDataPhone}
             handleEditUserDataMobilePhone={handleEditUserDataMobilePhone}
@@ -175,6 +178,6 @@ export default function AddAndEditUser() {
           />
         </UserProfile>
       </UserForm>
-    </form>
+    </div>
   )
 }

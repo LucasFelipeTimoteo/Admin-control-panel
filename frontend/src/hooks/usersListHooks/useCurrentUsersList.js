@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react"
+import arraySort from 'array-sort'
 
-export default function useCurrentUsersList(users, statusFilter, searchFilter) {
+export default function useCurrentUsersList(
+  users,
+  statusFilter,
+  searchFilter,
+  orderBy
+) {
   const [currentUsersList, setCurrentUsersList] = useState(users)
 
   useEffect(() => {
@@ -9,9 +15,32 @@ export default function useCurrentUsersList(users, statusFilter, searchFilter) {
       statusFilter ? user.status === statusFilter : true
     ))
 
-    const filteredUsers = usersFilteredByStatus.filter(user => {
+    const usersFilteredByOrder = () => {
+      if (orderBy === 'ascendent') {
+        const usersFilteredByAscendentOrder = arraySort(
+          usersFilteredByStatus,
+          'firstName'
+        )
+
+        return usersFilteredByAscendentOrder
+      }
+
+      if (orderBy === 'descendent') {
+        const usersFilteredByDescendent = arraySort(
+          usersFilteredByStatus,
+          'firstName',
+          { reverse: true }
+        )
+
+        return usersFilteredByDescendent
+      }
+
+      return usersFilteredByStatus
+    }
+
+    const filteredUsers = usersFilteredByOrder().filter(user => {
       const search = searchFilter.toLowerCase()
-      
+
       const filterByFirstName = user.firstName.toLowerCase().includes(search)
       const filterByLastName = user.lastName.toLowerCase().includes(search)
       const filterByUserName = user.username.toLowerCase().includes(search)
@@ -19,12 +48,11 @@ export default function useCurrentUsersList(users, statusFilter, searchFilter) {
 
       return filterByFirstName || filterByLastName || filterByUserName || filterByProfile
     })
-  
+
     setCurrentUsersList(filteredUsers)
-  }, [statusFilter, users, searchFilter])
+  }, [statusFilter, users, searchFilter, orderBy])
 
   return {
     currentUsersList,
-    
   }
 }

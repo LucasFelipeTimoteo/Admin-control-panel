@@ -1,10 +1,12 @@
 import { useState } from "react"
 
 export default function useStatus() {
-  const [status, setStatus] = useState('active')
-  
+  const storageStatus = sessionStorage.getItem('__USERFORM__status')
+
+  const [status, setStatus] = useState(storageStatus || 'active')
+
   const handleStatus = (e) => {
-    console.log(e.target.value)
+    sessionStorage.setItem('__USERFORM__status', e.target.value)
     setStatus(e.target.value)
   }
 

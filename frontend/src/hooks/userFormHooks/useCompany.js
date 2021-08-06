@@ -1,9 +1,12 @@
 import { useState } from 'react'
 
 export default function useCompany() {
-  const [company, setCompany] = useState('company1')
+  const storageCompany = sessionStorage.getItem('__USERFORM__company')
 
+  const [company, setCompany] = useState(storageCompany || 'company1')
+  
   const handleCompany = (e) => {
+    sessionStorage.setItem('__USERFORM__company', e.target.value)
     setCompany(e.target.value)
   }
 

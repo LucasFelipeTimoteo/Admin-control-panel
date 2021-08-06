@@ -1,8 +1,9 @@
 import React from 'react'
+import './styles.css'
 
 export default function ToolBar({ children }) {
   return (
-    <div style={{ backgroundColor: 'whitesmoke', height: 35, display: 'flex', justifyContent: 'space-around' }}>
+    <div className="toolbar">
       { children }
     </div>
   )

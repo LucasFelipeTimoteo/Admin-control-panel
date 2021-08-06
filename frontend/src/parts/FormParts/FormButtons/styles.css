@@ -1,0 +1,14 @@
+.form-buttons-wrapper {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* gap: 1px; */
+}
+
+.form-btn {
+  border: 1px solid gray;
+}
+
+.next-or-save-btn {
+  background-color: #6eaec972;
+}

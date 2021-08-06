@@ -1,0 +1,22 @@
+.table {
+  border: 1px solid #3c3c3c;
+  width: min(1200px, 100vw)
+}
+
+.table-header {
+  background-color: #6eaec972;
+  font-weight: 600;
+}
+
+.table-data {
+  text-align: center;
+}
+.table-row {
+  background-color: whitesmoke
+}
+
+.actions-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}

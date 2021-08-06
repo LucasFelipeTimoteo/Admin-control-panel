@@ -5,8 +5,11 @@ export default function UserName({
   handleUsername,
   editUserdata,
   step,
-  handleEditUserDataUsername
+  handleEditUserDataUsername,
+  state
 }) {
+
+  console.log(state)
 
   const onChangeCondition = (handleUsername) => {
     return handleUsername ? handleUsername : null

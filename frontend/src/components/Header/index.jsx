@@ -1,13 +1,17 @@
 import React from 'react'
+import './styles.css'
 
-export default function Header() {
-
-
+export default function Header({ userForm, userList }) {
   return (
-    <div style={{ backgroundColor: 'purple', height: 35, display: 'flex', justifyContent: 'space-around' }}>
-
-      header
-
+    <div className="header">
+      {
+        userList &&
+        <h1 className="header-title">Admin dashboard</h1>
+      }
+      {
+        userForm &&
+        <h1 className="header-title">Edit user</h1>
+      }
     </div>
   )
 }
