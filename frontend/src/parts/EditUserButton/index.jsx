@@ -6,6 +6,8 @@ export default function EditUserButton({handleEditUserData, user}) {
   return (
     <Link to="/add-and-edit-user"
       onClick={() => handleEditUserData(user)}
+      title="Edit user"
+      aria-label="edit"
     >
       <img src={editUserIcon} alt="Edit user button" />
     </Link>

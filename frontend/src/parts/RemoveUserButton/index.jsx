@@ -7,6 +7,8 @@ export default function RemoveUserButton({ deleteUser, user }) {
     <button
       className="remove-button"
       onClick={() => deleteUser(user)}
+      title="remove user"
+      aria-label="remove"
     >
       <img src={removeIcon} alt="Remove user button" />
     </button>

@@ -7,6 +7,8 @@ export default function ToggleStatusButton({ toggleStatusAction, user }) {
     <button
       className='toggle-status-button'
       onClick={() => toggleStatusAction(user)}
+      title="Toggle user activity status"
+      aria-label="toggle"
     >
       <img src={activityIcon} alt="Toggle user activity" />
     </button>
